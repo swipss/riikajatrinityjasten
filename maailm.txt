@@ -1,0 +1,48 @@
+Albaania: Balkani avastamata pärl, kus rannik kohtub mägedega.
+Armeenia: Varajase kristluse jäljed Kaukaasia südames.
+Aserbaidžaan: Ida ja lääne ristteel, iidsete tuletempelite kodu.
+Gruusia: Vana veinikultuuri häll ja mägiste maastike kodu.
+Island: Jää ja tule maa, kus loodus mängib peaosas.
+Jaapan: Traditsiooni ja tuleviku sulam, kus kirsipuude õitsemine on aastaringne pidu.
+Keenia: Aafrika safari süda, kus loodus kohtub seiklusega.
+Kolumbia: Elav kultuur ja lõputu rohelus Amazonase südames.
+Malaisia: Kultuuride sulatusahi ja sukeldumisparadiis.
+Maroko: Ajatu maagia, kus medinad ja kõrbed jutustavad lugusid.
+Peruu: Ajalugu hingab Inka radadel ja müstilises Machu Picchus.
+Türgi: Kultuuride kohtumispaik, kus Euroopa kohtub Aasiaga.
+Vietnam: Lummavad maastikud ja rikkalik ajalugu, mida avastada alates Halongi lahest kuni riisiterrassideni.
+Moldova: Salapärased veinikeldrid ja Euroopa üks peidetud aardeid.
+Montenegro: Võluv Adriamaa rannik, kus ajalugu kohtub loodusega.
+Põhja-Makedoonia: Ohridi järv ja pärand, mis peegeldub kristallselges vees.
+Serbia: Elava kultuuri ja ajaloo süda, kus Belgradi kindlus valvab jõgede üle.
+Afganistan: Hindukuši jalamil asuv kultuuriline rikkus, mis ootab avastamist.
+Alžeeria: Avarad Sahara kõrbed ja rikkalik ajalugu.
+Ameerika Ühendriigid: Loodusimedest tulvil, alates Grand Canyoni majesteetlikkusest kuni suurlinna sagimiseni.
+Angola: Viktoria juga ja peidetud loodusimed.
+Araabia Ühendemiraadid: Tuleviku linnad kõrbemaastiku südames, luksus ja innovatsioon.
+Argentina: Tango rütmid ja Patagoonia avarused kutsuvad avastama.
+Austria: Muusika ja ajaloo sulam, kus Alpid kohtuvad kultuuriga.
+Bosnia ja Hertsegoviina: Sarajevo ajaloolised kihtid ja ilusad maastikud, kus Ida kohtub Läänega.
+Brasiilia: Karnevalide maa, Amazonase vihmamets ja lõputud rannad.
+Kanada: Looduslik ilu, alates kõrguvatest mägedest kuni sügavate metsadeni.
+Tšiili: Andide selgroog ja Atacama kõrb, maa, kus vein ja seiklus kohtuvad.
+Egiptus: Faraonide ja püramiidide maa, Niiluse kallastel.
+Etioopia: Ajaloolised kirikud ja hingematvad maastikud, Aafrika sarve süda.
+India: Erakordne kultuuriline mitmekesisus, jooga sünnikoht ja vürtsikas köök.
+Indoneesia: Tuhandete saarte maa, kus Bali kohtub Komodo draakonitega.
+Iraan: Muistsete tsivilisatsioonide pärand ja rikkalikud kultuurilised traditsioonid.
+Mehhiko: Majaõlud, iidne kultuur ja värvikirev elu.
+Uus-Meremaa: Hämmastavad maastikud, mis on tuttavad "Sõrmuste Isanda" filmist.
+Nigeeria: Aafrika kultuurilise mitmekesisuse ja muusika süda.
+Norra: Fjordide maa, kus kesköine päike kohtub põhjavalgustega.
+Omaan: Arabia poolsaare pärl, tuntud oma külalislahkuse ja looduslike ilude poolest.
+Pakistan: Ajalooga maastikud, alates Himalaja mägedest kuni iidsete linnadeni.
+Venemaa: Piiritu maastik, kus Tsaari ajalugu kohtub Siberi karmi iluga.
+Lõuna-Aafrika Vabariik: Vikerkaarenatsioon, kus safari seiklused kohtuvad veiniteedega.
+Lõuna-Korea: Tehnoloogia ja traditsiooni sünergia, koduks dünaamilisele K-pop kultuurile.
+Tai: Naeratuste maa, tuntud oma külalislahkuse, templite ja eksootiliste randade poolest.
+Tansaania: Kilimanjaro mägi ja Serengeti ränded, Aafrika looduse essents.
+Türgi: Ajaloo ristteel, kus sulanduvad koos Anatoolia maastikud ja Ottomani pärand.
+Uganda: Gorillade ja šimpanside kodu, Aafrika südames.
+Ukraina: Rikkalikud põllud ja ajaloolised linnad, Euroopa viljaait.
+Uruguay: Rahulik rannikuelu ja maitsvad steakid, Lõuna-Ameerika peidetud aare.

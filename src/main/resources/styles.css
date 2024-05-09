@@ -1,0 +1,20 @@
+
+* {
+    /*-fx-font-family: Arial;*/
+}
+
+/* Warning Button Style */
+.success-button {
+    -fx-background-color: #006400; /* Orange */
+    -fx-text-fill: white;
+    -fx-font-size: 10pt;
+}
+
+.default-button {
+    -fx-background-color: #333333; /* Orange */
+    -fx-text-fill: white;
+    -fx-font-size: 10pt;
+}
+
+/* Success Button Style */
+
