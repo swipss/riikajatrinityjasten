@@ -1,13 +1,13 @@
 package org.example.riikajatrinityjasten;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -17,6 +17,9 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class Mäng extends Application {
     private StackPane root;
@@ -30,14 +33,6 @@ public class Mäng extends Application {
         this.praeguneMängija = haldur.getMängija(mängijaNimi);
         if (this.praeguneMängija == null) {
             System.out.println("Mängijat ei leitud: " + mängijaNimi);
-        }
-    }
-
-    public void lisaPraeguseleMängijalePunkte(int punktid) {
-        if (praeguneMängija != null) {
-            praeguneMängija.lisaPunkte(punktid);
-        } else {
-            System.out.println("Praegust mängijat ei eksisteeri.");
         }
     }
 
@@ -154,7 +149,8 @@ public class Mäng extends Application {
 
         euroopaNupp.setOnAction(e -> {
             try {
-                riigid = new Riigid("euroopa.txt");
+                riigid = new Riigid("euroopaliit.txt");
+                näitaSoovitudKüsimusteArvu();
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
@@ -209,7 +205,7 @@ public class Mäng extends Application {
 
         continueButton.setOnAction(event -> {
            küsimusteArv = Integer.parseInt(textField.getText());
-            System.out.println(Arrays.toString(riigid.getRandomQuestion()));
+            alustaMängu();
         });
 
 
@@ -225,16 +221,84 @@ public class Mäng extends Application {
     }
 
     public void alustaMängu() {
-        // veel mingid argumendid
-        // TODO
+        näitaKüsimust();
     }
 
-    public void näitaKüsimust(String küsimus) {
-        // veel mingid argumendid
-        // TODO
+    public void näitaKüsimust() {
+        if (küsimusteArv > 0) {
+            String[] rida = riigid.getRandomQuestion();
+            String vastus = rida[0];
+            String küsimus = rida[1];
+            System.out.println(vastus);
+
+            root.getChildren().clear();
+
+            Label label = new Label("Vihje: " + küsimus);
+            label.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+
+            TextField textField = new TextField();
+            textField.setPromptText("Vastus");
+
+            Button continueButton = new Button("Edasi");
+            continueButton.setOnAction(event -> {
+                String mängijaVastus = textField.getText();
+                küsimusteArv--;
+                if (vastus.equalsIgnoreCase(mängijaVastus)) {
+                    haldur.getMängija(praeguneMängija.getNimi()).lisaPunkte(1);
+                }
+                if (küsimusteArv > 0) {
+                    näitaKüsimust();
+                } else {
+                    System.out.println("otsas");
+                    System.out.println("punkte" + praeguneMängija.getSkoor());
+                    näitaEdetabelit();
+                }
+            });
+
+            VBox layout = new VBox(10);
+            layout.setAlignment(Pos.CENTER);
+            HBox buttonBox = new HBox(10, continueButton);
+            buttonBox.setAlignment(Pos.CENTER);
+            layout.getChildren().addAll(label, textField, buttonBox);
+            layout.setPadding(new Insets(20));
+
+            root.getChildren().add(layout);
+        }
     }
     public void näitaEdetabelit() {
-        // TODO
+        root.getChildren().clear();
+
+        TableView<Mängija> table = new TableView<>();
+        TableColumn<Mängija, String> nameColumn = new TableColumn<>("Mängija Nimi");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("nimi"));
+
+        TableColumn<Mängija, Number> scoreColumn = new TableColumn<>("Punktid");
+        scoreColumn.setCellValueFactory(new PropertyValueFactory<>("skoor"));
+
+        table.getColumns().add(nameColumn);
+        table.getColumns().add(scoreColumn);
+        table.setItems(FXCollections.observableArrayList(haldur.getMängijad().values().stream()
+                .map(m -> new Mängija(m.getNimi(), m.getSkoor())).sorted(Comparator.comparingInt(Mängija::getSkoor)).collect(Collectors.toList())));
+
+        Button quitButton = new Button("Lõpeta mängimine");
+        quitButton.getStyleClass().add("default-button");
+
+        quitButton.setOnAction(event -> Platform.exit());
+
+        Button continueButton = new Button("Jätka mängimist");
+        continueButton.getStyleClass().add("success-button");
+
+        continueButton.setOnAction(event -> {
+            näitaMänguAlgust();
+        });
+
+        VBox buttonBox = new VBox(10, continueButton, quitButton);
+        buttonBox.setAlignment(Pos.CENTER);
+
+        HBox mainLayout = new HBox(10, table, buttonBox);
+        mainLayout.setAlignment(Pos.CENTER);
+
+        root.getChildren().add(mainLayout);
     }
 
 
