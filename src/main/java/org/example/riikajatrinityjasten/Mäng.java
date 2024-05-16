@@ -22,7 +22,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class Mäng extends Application {
-    private StackPane root;
+    private StackPane juur;
     private Mängija praeguneMängija;
     private MängijateHaldur haldur = MängijateHaldur.getInstance();
     private Riigid riigid;
@@ -36,110 +36,118 @@ public class Mäng extends Application {
         }
     }
 
+    public static void näitaViga(String title, String content) {
+        Alert teade = new Alert(Alert.AlertType.ERROR);
+        teade.setTitle(title);
+        teade.setHeaderText(null); // No header text
+        teade.setContentText(content);
+        teade.showAndWait();
+    }
+
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        root = new StackPane();
+    public void start(Stage lava) throws Exception {
+        juur = new StackPane();
         näitaMänguAlgust();
 
-        Scene scene = new Scene(root, 400, 300);
-        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+        Scene stseen = new Scene(juur, 400, 300);
+        stseen.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
 
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("JavaFX Interface");
-        primaryStage.show();
+        lava.setScene(stseen);
+        lava.setTitle("JavaFX Interface");
+        lava.show();
     }
 
     private void näitaMänguAlgust() {
-        root.getChildren().clear();
-        Text title = new Text("🤩 Tere tulemast Riikide Äraarvamisemängu! 🤩");
-        title.setFont(Font.font("Arial", FontWeight.MEDIUM, 14));
+        juur.getChildren().clear();
+        Text pealkiri = new Text("🤩 Tere tulemast Riikide Äraarvamisemängu! 🤩");
+        pealkiri.setFont(Font.font("Arial", FontWeight.MEDIUM, 14));
 
-        Button button1 = new Button("Juhend");
-        Button button2 = new Button("Mängima");
-        button1.getStyleClass().add("default-button");
-        button2.getStyleClass().add("success-button");
-        button1.setOnAction(event -> näitaJuhendit());
-        button2.setOnAction(event -> näitaNimeSisestust());
+        Button nupp1 = new Button("Juhend");
+        Button nupp2 = new Button("Mängima");
+        nupp1.getStyleClass().add("default-button");
+        nupp2.getStyleClass().add("success-button");
+        nupp1.setOnAction(event -> näitaJuhendit());
+        nupp2.setOnAction(event -> näitaNimeSisestust());
 
-        HBox buttonBox = new HBox(10, button1, button2);
-        buttonBox.setAlignment(Pos.CENTER);
+        HBox nupuKast = new HBox(10, nupp1, nupp2);
+        nupuKast.setAlignment(Pos.CENTER);
 
-        VBox centerBox = new VBox(20, title, buttonBox);
-        centerBox.setAlignment(Pos.CENTER);
+        VBox keskmineKast = new VBox(20, pealkiri, nupuKast);
+        keskmineKast.setAlignment(Pos.CENTER);
 
-        centerBox.setPadding(new Insets(20));
+        keskmineKast.setPadding(new Insets(20));
 
-        root.getChildren().add(centerBox);
+        juur.getChildren().add(keskmineKast);
     }
 
     private void näitaJuhendit() {
-        root.getChildren().clear();
-        Text title = new Text("\uD83D\uDCD6 Juhend \uD83D\uDCD6");
-        title.setFont(Font.font("Arial", FontWeight.MEDIUM, 20));
+        juur.getChildren().clear();
+        Text pealkiri = new Text("\uD83D\uDCD6 Juhend \uD83D\uDCD6");
+        pealkiri.setFont(Font.font("Arial", FontWeight.MEDIUM, 20));
 
-        Text text = new Text("Ekraanile kuvatakse vihje, nt \"See riik on kaardi peal jalakujuline, mis järel pead sina pakkuma, mis riigiga on tegemist. 😎 Kui vastasid õigesti, liidetakse sinu puntkiskoorile punkt.");
-        text.setFont(Font.font("Arial", 14));
-        text.setWrappingWidth(250);
-        text.setTextAlignment(TextAlignment.CENTER);
+        Text tekst = new Text("Ekraanile kuvatakse vihje, nt \"See riik on kaardi peal jalakujuline, mis järel pead sina pakkuma, mis riigiga on tegemist. 😎 Kui vastasid õigesti, liidetakse sinu puntkiskoorile punkt.");
+        tekst.setFont(Font.font("Arial", 14));
+        tekst.setWrappingWidth(250);
+        tekst.setTextAlignment(TextAlignment.CENTER);
 
-        Button backButton = new Button("Tagasi");
-        backButton.getStyleClass().add("default-button");
+        Button tagasiNupp = new Button("Tagasi");
+        tagasiNupp.getStyleClass().add("default-button");
 
-        backButton.setOnAction(event -> näitaMänguAlgust());
+        tagasiNupp.setOnAction(event -> näitaMänguAlgust());
 
-        VBox centerBox = new VBox(20, title, text, backButton);
-        centerBox.setAlignment(Pos.CENTER);
+        VBox keskmineKast = new VBox(20, pealkiri, tekst, tagasiNupp);
+        keskmineKast.setAlignment(Pos.CENTER);
 
-        centerBox.setPadding(new Insets(20));
+        keskmineKast.setPadding(new Insets(20));
 
-        root.getChildren().add(centerBox);
+        juur.getChildren().add(keskmineKast);
     }
 
     public void näitaNimeSisestust() {
-        root.getChildren().clear();
+        juur.getChildren().clear();
 
-        Label label = new Label("Enne, kui asud mängu kallale, sisesta oma nimi:");
-        label.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        Label silt = new Label("Enne, kui asud mängu kallale, sisesta oma nimi:");
+        silt.setFont(Font.font("Arial", FontWeight.BOLD, 14));
 
-        TextField textField = new TextField();
-        textField.setPromptText("Nimi");
+        TextField tekstiSisend = new TextField();
+        tekstiSisend.setPromptText("Nimi");
 
-        Button continueButton = new Button("Jätka");
-        Button backButton = new Button("Tagasi");
-        backButton.getStyleClass().add("default-button");
-        continueButton.getStyleClass().add("success-button");
+        Button edasiNupp = new Button("Jätka");
+        Button tagasiNupp = new Button("Tagasi");
+        tagasiNupp.getStyleClass().add("default-button");
+        edasiNupp.getStyleClass().add("success-button");
 
-        continueButton.setOnAction(event -> {
-            String mängijaNimi = textField.getText();
+        edasiNupp.setOnAction(event -> {
+            String mängijaNimi = tekstiSisend.getText();
 
             if (!mängijaNimi.isEmpty()) {
                 Mängija mängija = new Mängija(mängijaNimi, 0);
                 haldur.lisaMängija(mängijaNimi, mängija);
                 määraPraeguneMängija(mängijaNimi);
-                System.out.println(praeguneMängija.getNimi());
-                System.out.println(haldur.getMängijad());
                 näitaRiikideValikut();
+            } else {
+               näitaViga("Input Error", "Nimi ei tohi olla tühi!");
             }
+
         });
 
-        backButton.setOnAction(event -> näitaMänguAlgust());
+        tagasiNupp.setOnAction(event -> näitaMänguAlgust());
 
         VBox layout = new VBox(10);
         layout.setAlignment(Pos.CENTER);
-        HBox buttonBox = new HBox(10, backButton, continueButton);
-        buttonBox.setAlignment(Pos.CENTER);
-        layout.getChildren().addAll(label, textField, buttonBox);
+        HBox nupuKast = new HBox(10, tagasiNupp, edasiNupp);
+        nupuKast.setAlignment(Pos.CENTER);
+        layout.getChildren().addAll(silt, tekstiSisend, nupuKast);
         layout.setPadding(new Insets(20));
 
-        // Add the layout to the root pane
-        root.getChildren().add(layout);
+        juur.getChildren().add(layout);
     }
 
     public void näitaRiikideValikut() {
-        root.getChildren().clear();
+        juur.getChildren().clear();
 
-        Label label = new Label("Milliseid riike soovid arvata?");
-        label.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        Label silt = new Label("Milliseid riike soovid arvata?");
+        silt.setFont(Font.font("Arial", FontWeight.BOLD, 14));
 
         Button euroopaNupp = new Button("Euroopa");
         Button maailmaNupp = new Button("Maailm");
@@ -168,56 +176,54 @@ public class Mäng extends Application {
 
         VBox layout = new VBox(10);
         layout.setAlignment(Pos.CENTER);
-        HBox buttonBox = new HBox(10, euroopaNupp, maailmaNupp);
-        buttonBox.setAlignment(Pos.CENTER);
-        layout.getChildren().addAll(label, buttonBox);
+        HBox nupuKast = new HBox(10, euroopaNupp, maailmaNupp);
+        nupuKast.setAlignment(Pos.CENTER);
+        layout.getChildren().addAll(silt, nupuKast);
         layout.setPadding(new Insets(20));
 
-        // Add the layout to the root pane
-        root.getChildren().add(layout);
+        juur.getChildren().add(layout);
 
 
     }
 
     public void näitaSoovitudKüsimusteArvu() {
-        root.getChildren().clear();
+        juur.getChildren().clear();
 
-        Label label = new Label("Mitmele küsimusele soovid vastata (1-27):");
-        label.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        Label silt = new Label("Mitmele küsimusele soovid vastata (1-27):");
+        silt.setFont(Font.font("Arial", FontWeight.BOLD, 14));
 
-        TextField textField = new TextField();
-        textField.setPromptText("Küsimusi");
-        Button continueButton = new Button("Alusta");
-        continueButton.getStyleClass().add("success-button-disabled");
-        textField.textProperty().addListener(((observableValue, old, newVal) -> {
+        TextField teksiSisend = new TextField();
+        teksiSisend.setPromptText("Küsimusi");
+        Button edasiNupp = new Button("Alusta");
+        edasiNupp.getStyleClass().add("success-button-disabled");
+        teksiSisend.textProperty().addListener(((observableValue, old, newVal) -> {
             int küsimusi = 0;
             if (!newVal.isEmpty()) {
-
                 küsimusi = Integer.parseInt(newVal);
             }
             if (küsimusi < 27 && küsimusi > 0) {
-                continueButton.getStyleClass().add("success-button");
-                continueButton.getStyleClass().remove("success-button-disabled");
-
+                edasiNupp.getStyleClass().add("success-button");
+                edasiNupp.getStyleClass().remove("success-button-disabled");
             }
-            System.out.println(küsimusi);
+
         }));
 
-        continueButton.setOnAction(event -> {
-           küsimusteArv = Integer.parseInt(textField.getText());
-            alustaMängu();
+        edasiNupp.setOnAction(event -> {
+           küsimusteArv = Integer.parseInt(teksiSisend.getText());
+            if (küsimusteArv < 27 && küsimusteArv > 0) {
+                alustaMängu();
+            }
         });
 
 
         VBox layout = new VBox(10);
         layout.setAlignment(Pos.CENTER);
-        HBox buttonBox = new HBox(10, continueButton);
-        buttonBox.setAlignment(Pos.CENTER);
-        layout.getChildren().addAll(label, textField, buttonBox);
+        HBox nupuKast = new HBox(10, edasiNupp);
+        nupuKast.setAlignment(Pos.CENTER);
+        layout.getChildren().addAll(silt, teksiSisend, nupuKast);
         layout.setPadding(new Insets(20));
 
-        // Add the layout to the root pane
-        root.getChildren().add(layout);
+        juur.getChildren().add(layout);
     }
 
     public void alustaMängu() {
@@ -231,17 +237,24 @@ public class Mäng extends Application {
             String küsimus = rida[1];
             System.out.println(vastus);
 
-            root.getChildren().clear();
+            juur.getChildren().clear();
 
-            Label label = new Label("Vihje: " + küsimus);
-            label.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+            Text tekst = new Text("Vihje: " + küsimus);
+            tekst.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+            tekst.setWrappingWidth(250);
+            tekst.setTextAlignment(TextAlignment.CENTER);
 
-            TextField textField = new TextField();
-            textField.setPromptText("Vastus");
+            TextField tekstiSisend = new TextField();
+            tekstiSisend.setPromptText("Vastus");
 
-            Button continueButton = new Button("Edasi");
-            continueButton.setOnAction(event -> {
-                String mängijaVastus = textField.getText();
+            Button edasiNupp = new Button("Edasi");
+            edasiNupp.getStyleClass().add("success-button");
+            edasiNupp.setOnAction(event -> {
+                String mängijaVastus = tekstiSisend.getText();
+                if (mängijaVastus.trim().isEmpty()) {
+                    näitaViga("Input Error", "Vastus ei tohi olla tühi!");
+                    return;
+                }
                 küsimusteArv--;
                 if (vastus.equalsIgnoreCase(mängijaVastus)) {
                     haldur.getMängija(praeguneMängija.getNimi()).lisaPunkte(1);
@@ -249,56 +262,54 @@ public class Mäng extends Application {
                 if (küsimusteArv > 0) {
                     näitaKüsimust();
                 } else {
-                    System.out.println("otsas");
-                    System.out.println("punkte" + praeguneMängija.getSkoor());
                     näitaEdetabelit();
                 }
             });
 
             VBox layout = new VBox(10);
             layout.setAlignment(Pos.CENTER);
-            HBox buttonBox = new HBox(10, continueButton);
-            buttonBox.setAlignment(Pos.CENTER);
-            layout.getChildren().addAll(label, textField, buttonBox);
+            HBox nupuKast = new HBox(10, edasiNupp);
+            nupuKast.setAlignment(Pos.CENTER);
+            layout.getChildren().addAll(tekst, tekstiSisend, nupuKast);
             layout.setPadding(new Insets(20));
 
-            root.getChildren().add(layout);
+            juur.getChildren().add(layout);
         }
     }
     public void näitaEdetabelit() {
-        root.getChildren().clear();
+        juur.getChildren().clear();
 
-        TableView<Mängija> table = new TableView<>();
-        TableColumn<Mängija, String> nameColumn = new TableColumn<>("Mängija Nimi");
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("nimi"));
+        TableView<Mängija> tabel = new TableView<>();
+        TableColumn<Mängija, String> nimeVeerg = new TableColumn<>("Mängija Nimi");
+        nimeVeerg.setCellValueFactory(new PropertyValueFactory<>("nimi"));
 
-        TableColumn<Mängija, Number> scoreColumn = new TableColumn<>("Punktid");
-        scoreColumn.setCellValueFactory(new PropertyValueFactory<>("skoor"));
+        TableColumn<Mängija, Number> skooriVeerg = new TableColumn<>("Punktid");
+        skooriVeerg.setCellValueFactory(new PropertyValueFactory<>("skoor"));
 
-        table.getColumns().add(nameColumn);
-        table.getColumns().add(scoreColumn);
-        table.setItems(FXCollections.observableArrayList(haldur.getMängijad().values().stream()
+        tabel.getColumns().add(nimeVeerg);
+        tabel.getColumns().add(skooriVeerg);
+        tabel.setItems(FXCollections.observableArrayList(haldur.getMängijad().values().stream()
                 .map(m -> new Mängija(m.getNimi(), m.getSkoor())).sorted(Comparator.comparingInt(Mängija::getSkoor)).collect(Collectors.toList())));
 
-        Button quitButton = new Button("Lõpeta mängimine");
-        quitButton.getStyleClass().add("default-button");
+        Button lõpetaNupp = new Button("Lõpeta mängimine");
+        lõpetaNupp.getStyleClass().add("default-button");
 
-        quitButton.setOnAction(event -> Platform.exit());
+        lõpetaNupp.setOnAction(event -> Platform.exit());
 
-        Button continueButton = new Button("Jätka mängimist");
-        continueButton.getStyleClass().add("success-button");
+        Button edasiNupp = new Button("Jätka mängimist");
+        edasiNupp.getStyleClass().add("success-button");
 
-        continueButton.setOnAction(event -> {
+        edasiNupp.setOnAction(event -> {
             näitaMänguAlgust();
         });
 
-        VBox buttonBox = new VBox(10, continueButton, quitButton);
-        buttonBox.setAlignment(Pos.CENTER);
+        VBox nupuKast = new VBox(10, edasiNupp, lõpetaNupp);
+        nupuKast.setAlignment(Pos.CENTER);
 
-        HBox mainLayout = new HBox(10, table, buttonBox);
+        HBox mainLayout = new HBox(10, tabel, nupuKast);
         mainLayout.setAlignment(Pos.CENTER);
 
-        root.getChildren().add(mainLayout);
+        juur.getChildren().add(mainLayout);
     }
 
 

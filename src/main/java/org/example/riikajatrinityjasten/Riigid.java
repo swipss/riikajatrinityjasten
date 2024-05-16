@@ -10,14 +10,14 @@ public class Riigid {
     private String failinimi;
     private List<String> riigid;
     private List<String> vihjed;
-    private List<Integer> usedIndices;
+    private List<Integer> kasutatudRiigid;
     private Random random;
 
     public Riigid(String failinimi) throws Exception {
         this.failinimi = failinimi;
         this.riigid = new ArrayList<>();
         this.vihjed = new ArrayList<>();
-        this.usedIndices = new ArrayList<>();
+        this.kasutatudRiigid = new ArrayList<>();
         this.random = new Random();
         failiLugemine();
     }
@@ -37,14 +37,14 @@ public class Riigid {
     }
 
     public String[] getRandomQuestion() {
-        if (vihjed.isEmpty() || usedIndices.size() == vihjed.size()) {
-            return new String[]{"", "No more unique hints available"};
+        if (vihjed.isEmpty() || kasutatudRiigid.size() == vihjed.size()) {
+            return new String[]{"", "Küsimused otsas"};
         }
         int index;
         do {
             index = random.nextInt(vihjed.size());
-        } while (usedIndices.contains(index));
-        usedIndices.add(index);
+        } while (kasutatudRiigid.contains(index));
+        kasutatudRiigid.add(index);
 
         return new String[]{riigid.get(index), vihjed.get(index)};
     }
