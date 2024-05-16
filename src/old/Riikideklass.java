@@ -1,13 +1,14 @@
+package org.example.riikajatrinityjasten;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 public class Riikideklass {
     private String failinimi;
     private ArrayList<String> Riigid;
     private ArrayList<String> Vihjed;
 
-    public Riikideklass(String failinimi, ArrayList<String> riigid, ArrayList<String> vihjed) {
+    public Riikideklass(String failinimi, ArrayList riigid, ArrayList vihjed) {
         this.failinimi = failinimi;
         Riigid = riigid;
         Vihjed = vihjed;

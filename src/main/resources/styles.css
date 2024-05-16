@@ -10,6 +10,12 @@
     -fx-font-size: 10pt;
 }
 
+.success-button-disabled {
+    -fx-background-color: rgba(0, 100, 0, 0.43); /* Orange */
+    -fx-text-fill: white;
+    -fx-font-size: 10pt;
+}
+
 .default-button {
     -fx-background-color: #333333; /* Orange */
     -fx-text-fill: white;
